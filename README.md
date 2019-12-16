@@ -4,7 +4,7 @@ This document outlines all information on how to use the API's for my personal w
 **URL**<br>
 `https://api.zanadaniel.com/public/`
 
-**Accepted data format**<br>
+**Format**<br>
 `JSON`
 
 ---

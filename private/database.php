@@ -1,6 +1,6 @@
 <?php
     class Database {
-        private $host = "mysql4112int.cp.blacknight.com";
+        private $host = "mysql4112.cp.blacknight.com";
         private $dbname = "db1516988_blog";
         private $username = "u1516988_zana";
         private $password = "P#ft9k5MX1";

@@ -1,19 +1,19 @@
 <?php
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
+    header('Access-Control-Allow-Methods: GET');
 
-    include_once('../config/Database.php');
-    include_once('../models/Post.php');
+    include_once('../private/database.php');
+    include_once('../private/api.php');
 
     $database = new Database();
     $db = $database->connect();
 
-    $post = new Post($db);
-    $result = $post->all();
+    $api = new API($db);
+    $result = $api->read_all();
 
     if ($result->rowCount() > 0) {
         $response = array();
-        $response['status'] = '1';
         $response['message'] = 'Showing all posts available at this time.';
         $response['data'] = array();
 
@@ -26,7 +26,6 @@
     } else {
         echo json_encode(
             array(
-                'status' => '1',
                 'message' => 'No posts available at this time.'
             )
         );

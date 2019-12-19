@@ -119,7 +119,7 @@ PUT
 Deletes an existing post.
 
 **Request**<br>
-DELETE
+POST
 
 **Parameters**<br>
 - id*

@@ -86,6 +86,7 @@ POST
 - title*
 - image
 - body*
+- token*
 
 **Response**<br>
 - message
@@ -106,6 +107,7 @@ PUT
 - title*
 - image
 - body*
+- token*
 
 **Response**<br>
 - message
@@ -123,6 +125,7 @@ POST
 
 **Parameters**<br>
 - id*
+- token*
 
 **Response**<br>
 - message

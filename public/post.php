@@ -15,6 +15,17 @@
     $db = $database->connect();
 
     $api = new API($db);
+
+    if (!isset($_GET['token']) || !$api->verify($_GET['token'])) {
+        echo json_encode(
+            array(
+                'message' => 'You are not authorized to use this API.'
+            )
+        );
+
+        die();
+    }
+
     $result = $api->read_single(isset($_GET['id']) ? $_GET['id'] : die());
 
     if ($result->rowCount() > 0) {

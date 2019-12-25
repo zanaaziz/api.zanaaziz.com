@@ -4,10 +4,16 @@
         private $conn;
         private $users_table = 'users';
         private $posts_table = 'posts';
+        private $token = 'GiCe7zHc';
 
         // constructor
         public function __construct($db) {
             $this->conn = $db;
+        }
+
+        // verify token
+        public function verify($token) {
+            return $token === $this->token ? true : false;
         }
 
         // login

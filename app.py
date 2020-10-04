@@ -7,8 +7,7 @@ from db import db
 from ma import ma
 from blacklist import BLACKLIST
 
-from resources.user import UserRegister, UserLogin, UserLogout, User, UserTokenRefresh
-from resources.store import Stores, StoresList
+from resources.user import UserRegister, UserLogin, UserLogout, UserTokenRefresh
 from resources.item import Items, ItemsList
 
 app = Flask(__name__)
@@ -64,9 +63,6 @@ api.add_resource(UserRegister, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(UserLogout, '/logout')
 api.add_resource(UserTokenRefresh, '/refresh')
-api.add_resource(User, '/users/<int:_id>')
-api.add_resource(StoresList, '/stores')
-api.add_resource(Stores, '/stores/<int:_id>')
 api.add_resource(ItemsList, '/items')
 api.add_resource(Items, '/items/<int:_id>')
 

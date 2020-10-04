@@ -1,7 +1,6 @@
 from flask_restful import Resource, request
 from flask_jwt_extended import jwt_required
 from models.item import ItemModel
-from models.store import StoreModel
 from schemas.item import ItemSchema
 
 item_schema = ItemSchema()
@@ -20,12 +19,6 @@ class ItemsList(Resource):
 	@classmethod
 	def post(cls):
 		item_req_model = item_schema.load(request.get_json())
-
-		try:
-			if StoreModel.find_by_id(_id=item_req_model.store_id) is None:
-				return { 'message': 'Invalid store ID.' }, 400
-		except:
-			return { 'message': 'Error while validating store ID.' }, 500
 		
 		try:
 			item_req_model.save()
@@ -59,12 +52,6 @@ class Items(Resource):
 			return { 'message': 'Item not found.' }, 404
 
 		item_req_model = item_schema.load(request.get_json(), instance=item_to_update)
-
-		try:
-			if StoreModel.find_by_id(_id=item_req_model.store_id) is None:
-				return { 'message': 'Invalid store ID.' }, 400
-		except:
-			return { 'message': 'Error while validating store ID.' }, 500
 		
 		try:
 			item_req_model.save()

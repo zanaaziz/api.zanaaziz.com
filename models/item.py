@@ -7,9 +7,6 @@ class ItemModel(db.Model):
 	name = db.Column(db.String(80), nullable=False)
 	color = db.Column(db.String(80), nullable=False)
 
-	store_id = db.Column(db.Integer, db.ForeignKey('stores.id'), nullable=False)
-	store = db.relationship('StoreModel')
-
 	def save(self) -> None:
 		db.session.add(self)
 		db.session.commit()

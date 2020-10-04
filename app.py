@@ -7,7 +7,7 @@ from db import db
 from ma import ma
 from blacklist import BLACKLIST
 
-from resources.user import UserRegister, UserLogin, UserLogout, UserTokenRefresh
+from resources.user import UserLogin, UserLogout, UserTokenRefresh
 from resources.item import Items, ItemsList
 
 app = Flask(__name__)
@@ -59,7 +59,6 @@ def unauthorized(error):
 def create_database_tables():
 	db.create_all()
 
-api.add_resource(UserRegister, '/register')
 api.add_resource(UserLogin, '/login')
 api.add_resource(UserLogout, '/logout')
 api.add_resource(UserTokenRefresh, '/refresh')

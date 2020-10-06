@@ -10,8 +10,12 @@ from blacklist import BLACKLIST
 from resources.user import UserLogin, UserLogout, UserTokenRefresh
 from resources.post import Posts, PostsList
 
+sqlite_db = 'sqlite:///data.db'
+staging_db = 'mysql+mysqlconnector://root:root@127.0.0.1:8889/blog'
+production_db = ''
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = staging_db
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['JWT_SECRET_KEY'] = 'secret'

@@ -17,6 +17,7 @@ class PostsList(Resource):
 		return { 'message': 'No posts available.' }, 200
 
 	@classmethod
+	@jwt_required
 	def post(cls):
 		post_req_model = post_schema.load(request.get_json())
 		
@@ -42,6 +43,7 @@ class Posts(Resource):
 		return { 'message': 'Post not found.' }, 404
 
 	@classmethod
+	@jwt_required
 	def put(cls, _id: int):
 		try:
 			post_to_update = PostModel.find_by_id(_id=_id)

@@ -1,79 +1,79 @@
 from flask_restful import Resource, request
 from flask_jwt_extended import jwt_required
-from models.item import ItemModel
-from schemas.item import ItemSchema
+from models.post import PostModel
+from schemas.post import PostSchema
 
-item_schema = ItemSchema()
-item_list_schema = ItemSchema(many=True)
+post_schema = PostSchema()
+post_list_schema = PostSchema(many=True)
 
-class ItemsList(Resource):
+class PostsList(Resource):
 	@classmethod
 	def get(cls):
-		items = item_list_schema.dump(ItemModel.find_all())
+		posts = post_list_schema.dump(PostModel.find_all())
 
-		if len(items) > 0:
-			return { 'items': items }, 200
+		if len(posts) > 0:
+			return { 'posts': posts }, 200
 
-		return { 'message': 'No items available.' }, 200
+		return { 'message': 'No posts available.' }, 200
 
 	@classmethod
 	def post(cls):
-		item_req_model = item_schema.load(request.get_json())
+		post_req_model = post_schema.load(request.get_json())
 		
 		try:
-			item_req_model.save()
+			post_req_model.save()
 		except:
-			return { 'message': 'Error while creating item.' }, 500
+			return { 'message': 'Error while creating post.' }, 500
 
-		return { 'message': 'Item created.', 'item': item_schema.dump(item_req_model) }, 201
+		return { 'message': 'Post created.', 'post': post_schema.dump(post_req_model) }, 201
 
 
-class Items(Resource):
+class Posts(Resource):
 	@classmethod
 	def get(cls, _id: int):
 		try:
-			item = ItemModel.find_by_id(_id=_id)
+			post = PostModel.find_by_id(_id=_id)
 		except:
-			return { 'message': 'Error while finding item.' }, 500
+			return { 'message': 'Error while finding post.' }, 500
 
-		if item:
-			return item_schema.dump(item), 200
+		if post:
+			return post_schema.dump(post), 200
 
-		return { 'message': 'Item not found.' }, 404
+		return { 'message': 'Post not found.' }, 404
 
 	@classmethod
 	def put(cls, _id: int):
 		try:
-			item_to_update = ItemModel.find_by_id(_id=_id)
+			post_to_update = PostModel.find_by_id(_id=_id)
 		except:
-			return { 'message': 'Error while finding item.' }, 500
+			return { 'message': 'Error while finding post.' }, 500
 
-		if item_to_update is None:
-			return { 'message': 'Item not found.' }, 404
+		if post_to_update is None:
+			return { 'message': 'Post not found.' }, 404
 
-		item_req_model = item_schema.load(request.get_json(), instance=item_to_update)
+		post_req_model = post_schema.load(request.get_json(), instance=post_to_update)
 		
 		try:
-			item_req_model.save()
+			post_req_model.save()
 		except:
-			return { 'message': 'Error while updating item.' }, 500
+			return { 'message': 'Error while updating post.' }, 500
 
-		return { 'message': 'Item updated.', 'item': item_schema.dump(item_req_model) }, 200
+		return { 'message': 'Post updated.', 'post': post_schema.dump(post_req_model) }, 200
 
 	@classmethod
 	@jwt_required
 	def delete(cls, _id: int):
 		try:
-			item = ItemModel.find_by_id(_id=_id)
+			post = PostModel.find_by_id(_id=_id)
 		except:
-			return { 'message': 'Error while finding item.' }, 500
+			return { 'message': 'Error while finding post.' }, 500
 
-		if item is None:
-			return { 'message': 'Item not found.' }, 404
+		if post is None:
+			return { 'message': 'Post not found.' }, 404
 
 		try:
-			item.delete()
+			post.delete()
 		except:
-			return { 'message': 'Error while deleting item.' }, 500
+			return { 'message': 'Error while deleting post.' }, 500
 
-		return { 'message': 'Item deleted.' }, 200
+		return { 'message': 'Post deleted.' }, 200

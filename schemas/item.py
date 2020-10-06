@@ -1,7 +1,7 @@
 from ma import ma
-from models.item import ItemModel
+from models.post import PostModel
 
-class ItemSchema(ma.SQLAlchemyAutoSchema):
+class PostSchema(ma.SQLAlchemyAutoSchema):
 	class Meta:
-		model = ItemModel
+		model = PostModel
 		load_instance = True

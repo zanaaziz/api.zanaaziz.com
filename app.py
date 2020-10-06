@@ -8,7 +8,7 @@ from ma import ma
 from blacklist import BLACKLIST
 
 from resources.user import UserLogin, UserLogout, UserTokenRefresh
-from resources.item import Items, ItemsList
+from resources.post import Posts, PostsList
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -62,8 +62,8 @@ def create_database_tables():
 api.add_resource(UserLogin, '/login')
 api.add_resource(UserLogout, '/logout')
 api.add_resource(UserTokenRefresh, '/refresh')
-api.add_resource(ItemsList, '/items')
-api.add_resource(Items, '/items/<int:_id>')
+api.add_resource(PostsList, '/posts')
+api.add_resource(Posts, '/posts/<int:_id>')
 
 if __name__ == '__main__':
 	db.init_app(app)

@@ -1,8 +1,8 @@
 from db import db
 from typing import List
 
-class ItemModel(db.Model):
-	__tablename__ = 'items'
+class PostModel(db.Model):
+	__tablename__ = 'posts'
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(80), nullable=False)
 	color = db.Column(db.String(80), nullable=False)
@@ -16,9 +16,9 @@ class ItemModel(db.Model):
 		db.session.commit()
 
 	@classmethod
-	def find_all(cls) -> List['ItemModel']:
+	def find_all(cls) -> List['PostModel']:
 		return cls.query.all()
 
 	@classmethod
-	def find_by_id(cls, _id: int) -> 'ItemModel':
+	def find_by_id(cls, _id: int) -> 'PostModel':
 		return cls.query.filter_by(id=_id).first()

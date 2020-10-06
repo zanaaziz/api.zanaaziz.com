@@ -69,7 +69,8 @@ api.add_resource(UserTokenRefresh, '/refresh')
 api.add_resource(PostsList, '/posts')
 api.add_resource(Posts, '/posts/<int:_id>')
 
+db.init_app(app)
+ma.init_app(app)
+
 if __name__ == '__main__':
-	db.init_app(app)
-	ma.init_app(app)
-	app.run(port=5000, debug=True)
+	app.run()

@@ -7,16 +7,16 @@ This document outlines all information on the backend APIs built in Python's Fla
 **Format**<br>
 `JSON`
 
+**Authorization**<br>
+`Bearer`
+
 ---
 
-**Name**<br>
-`/login`
+**Endpoint**<br>
+`POST /login`
 
 **Description**<br>
 Signs a user into their account.
-
-**Protocol**<br>
-POST
 
 **Parameters**
 - username*
@@ -29,16 +29,13 @@ POST
 
 ---
 
-**Name**<br>
-`/logout`
+**Endpoint**<br>
+`POST /logout`
 
 **Description**<br>
 Signs a user out of their account.
 
-**Protocol**<br>
-POST
-
-**Authorization**<br>
+**Headers**<br>
 - access_token*
 
 **Parameters**
@@ -49,16 +46,13 @@ POST
 
 ---
 
-**Name**<br>
-`/refresh`
+**Endpoint**<br>
+`POST /refresh`
 
 **Description**<br>
 Refreshes a user's token.
 
-**Protocol**<br>
-POST
-
-**Authorization**<br>
+**Headers**<br>
 - refresh_token*
 
 **Response**
@@ -66,14 +60,11 @@ POST
 
 ---
 
-**Name**<br>
-`/posts`
+**Endpoint**<br>
+`GET /posts`
 
 **Description**<br>
 Fetches all posts available.
-
-**Protocol**<br>
-GET
 
 **Response**<br>
 - posts: [ ]
@@ -86,16 +77,13 @@ GET
 
 ---
 
-**Name**<br>
-`/posts`
+**Endpoint**<br>
+`POST /posts`
 
 **Description**<br>
 Creates a new post.
 
-**Protocol**<br>
-POST
-
-**Authorization**<br>
+**Headers**<br>
 - access_token*
 
 **Parameters**
@@ -115,14 +103,11 @@ POST
 
 ---
 
-**Name**<br>
-`/posts/<id>`
+**Endpoint**<br>
+`GET /posts/:id`
 
 **Description**<br>
 Fetches a specific post by ID.
-
-**Protocol**<br>
-GET
 
 **Response**
 - id
@@ -134,16 +119,13 @@ GET
 
 ---
 
-**Name**<br>
-`/posts/<id>`
+**Endpoint**<br>
+`PUT /posts/:id`
 
 **Description**<br>
 Updates an existing post.
 
-**Protocol**<br>
-PUT
-
-**Authorization**
+**Headers**
 - access_token*
 
 **Parameters**
@@ -164,16 +146,13 @@ PUT
 
 ---
 
-**Name**<br>
-`/posts/<id>`
+**Endpoint**<br>
+`DELETE /posts/:id`
 
 **Description**<br>
 Deletes an existing post.
 
-**Protocol**<br>
-DELETE
-
-**Authorization**
+**Headers**
 - access_token*
 
 **Response**

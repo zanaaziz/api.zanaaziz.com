@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from flask_restful import Api
-from flask_restful.utils import cors
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
 
@@ -16,6 +16,7 @@ staging_db = 'mysql+mysqlconnector://root:root@127.0.0.1:8889/blog'
 production_db = 'mysql+mysqlconnector://zanaynnp_zana:NJmZnT2g4uHDf7C@127.0.0.1:3306/zanaynnp_blog'
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = production_db
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
@@ -23,7 +24,6 @@ app.config['JWT_SECRET_KEY'] = 'secret'
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 api = Api(app)
-api.decorators=[cors.crossdomain(origin='*')]
 jwt = JWTManager(app)
 
 @app.errorhandler(ValidationError)

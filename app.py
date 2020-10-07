@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_restful import Api
+from flask_restful.utils import cors
 from flask_jwt_extended import JWTManager
 from marshmallow import ValidationError
 
@@ -22,6 +23,7 @@ app.config['JWT_SECRET_KEY'] = 'secret'
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 api = Api(app)
+api.decorators=[cors.crossdomain(origin='*')]
 jwt = JWTManager(app)
 
 @app.errorhandler(ValidationError)

@@ -1,6 +1,7 @@
 from db import db
 from typing import List
 from sqlalchemy.sql import func
+from sqlalchemy import desc
 
 class PostModel(db.Model):
 	__tablename__ = 'posts'
@@ -21,7 +22,7 @@ class PostModel(db.Model):
 
 	@classmethod
 	def find_all(cls) -> List['PostModel']:
-		return cls.query.all()
+		return cls.query.order_by(desc(cls.date_created)).all()
 
 	@classmethod
 	def find_by_id(cls, _id: int) -> 'PostModel':

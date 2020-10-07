@@ -1,8 +1,8 @@
 # Documentation
-This document outlines all information on how to use the API's for my personal website.
+This document outlines all information on the backend APIs built in Python's Flask framework for my personal website.
 
 **URL**<br>
-`https://api.zanadaniel.com/public/`
+`https://api.zanaaziz.com`
 
 **Format**<br>
 `JSON`
@@ -10,122 +10,172 @@ This document outlines all information on how to use the API's for my personal w
 ---
 
 **Name**<br>
-`login.php`
+`/login`
 
 **Description**<br>
 Signs a user into their account.
 
-**Request**<br>
+**Protocol**<br>
 POST
 
-**Parameters**<br>
+**Parameters**
 - username*
 - password*
 
-**Response**<br>
-- authentication
+**Response**
+- id
+- access_token
+- refresh_token
+
+---
+
+**Name**<br>
+`/logout`
+
+**Description**<br>
+Signs a user out of their account.
+
+**Protocol**<br>
+POST
+
+**Authorization**<br>
+- access_token*
+
+**Parameters**
+- refresh_token*
+
+**Response**
 - message
 
 ---
 
 **Name**<br>
-`posts.php`
+`/refresh`
 
 **Description**<br>
-Fetches all posts available at this time.
+Refreshes a user's token.
 
-**Request**<br>
+**Protocol**<br>
+POST
+
+**Authorization**<br>
+- refresh_token*
+
+**Response**
+- access_token
+
+---
+
+**Name**<br>
+`/posts`
+
+**Description**<br>
+Fetches all posts available.
+
+**Protocol**<br>
 GET
 
 **Response**<br>
-- message
-- data
+- posts: [ ]
   - id
   - title
-  - slug
-  - image
+  - image_url
   - body
-  - date
+  - date_created
+  - live
 
 ---
 
 **Name**<br>
-`post.php`
-
-**Description**<br>
-Fetches a specific post by ID.
-
-**Request**<br>
-GET
-
-**Parameters**<br>
-- id*
-
-**Response**<br>
-- message
-- data
-  - id
-  - title
-  - slug
-  - image
-  - body
-  - date
-
----
-
-**Name**<br>
-`create.php`
+`/posts`
 
 **Description**<br>
 Creates a new post.
 
-**Request**<br>
+**Protocol**<br>
 POST
 
-**Parameters**<br>
-- title*
-- image
-- body*
-- token*
+**Authorization**<br>
+- access_token*
 
-**Response**<br>
+**Parameters**
+- title*
+- image_url
+- body*
+
+**Response**
 - message
+- post: { }
+  - id
+  - title
+  - image_url
+  - body
+  - date_created
+  - live
 
 ---
 
 **Name**<br>
-`update.php`
+`/posts/<id>`
+
+**Description**<br>
+Fetches a specific post by ID.
+
+**Protocol**<br>
+GET
+
+**Response**
+- post: { }
+  - id
+  - title
+  - image_url
+  - body
+  - date_created
+  - live
+
+---
+
+**Name**<br>
+`/posts/<id>`
 
 **Description**<br>
 Updates an existing post.
 
-**Request**<br>
+**Protocol**<br>
 PUT
 
-**Parameters**<br>
-- id*
-- title*
-- image
-- body*
-- token*
+**Authorization**
+- access_token*
 
-**Response**<br>
+**Parameters**
+- title*
+- image_url
+- body*
+- live
+
+**Response**
 - message
+- post: { }
+  - id
+  - title
+  - image_url
+  - body
+  - date_created
+  - live
 
 ---
 
 **Name**<br>
-`delete.php`
+`/posts/<id>`
 
 **Description**<br>
 Deletes an existing post.
 
-**Request**<br>
-POST
+**Protocol**<br>
+DELETE
 
-**Parameters**<br>
-- id*
-- token*
+**Authorization**
+- access_token*
 
-**Response**<br>
+**Response**
 - message

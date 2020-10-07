@@ -125,13 +125,12 @@ Fetches a specific post by ID.
 GET
 
 **Response**
-- post: { }
-  - id
-  - title
-  - image_url
-  - body
-  - date_created
-  - live
+- id
+- title
+- image_url
+- body
+- date_created
+- live
 
 ---
 

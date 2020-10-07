@@ -124,9 +124,6 @@ Fetches a specific post by ID.
 **Protocol**<br>
 GET
 
-**Parameters**
-- id*
-
 **Response**
 - post: { }
   - id

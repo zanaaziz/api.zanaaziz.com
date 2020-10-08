@@ -66,6 +66,9 @@ Refreshes a user's token.
 **Description**<br>
 Fetches all posts available.
 
+**Headers**
+- access_token
+
 **Response**<br>
 - posts: [ ]
   - id
@@ -83,7 +86,7 @@ Fetches all posts available.
 **Description**<br>
 Creates a new post.
 
-**Headers**<br>
+**Headers**
 - access_token*
 
 **Parameters**

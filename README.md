@@ -157,3 +157,24 @@ Deletes an existing post.
 
 **Response**
 - message
+
+---
+
+**Endpoint**<br>
+`PUT /posts/:id/live`
+
+**Description**<br>
+Toggles the live status of a post.
+
+**Headers**
+- access_token*
+
+**Response**
+- message
+- post: { }
+  - id
+  - title
+  - image_url
+  - body
+  - date_created
+  - live

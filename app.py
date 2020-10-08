@@ -9,7 +9,7 @@ from ma import ma
 from blacklist import BLACKLIST
 
 from resources.user import UserLogin, UserLogout, UserTokenRefresh
-from resources.post import Posts, PostsList
+from resources.post import Posts, PostsList, PostsToggleLive
 
 sqlite_db = 'sqlite:///data.db'
 staging_db = 'mysql+mysqlconnector://root:root@127.0.0.1:8889/blog'
@@ -70,9 +70,10 @@ api.add_resource(UserLogout, '/logout')
 api.add_resource(UserTokenRefresh, '/refresh')
 api.add_resource(PostsList, '/posts')
 api.add_resource(Posts, '/posts/<int:_id>')
+api.add_resource(PostsToggleLive, '/posts/<int:_id>/live')
 
 db.init_app(app)
 ma.init_app(app)
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=False)

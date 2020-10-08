@@ -2,6 +2,7 @@ from db import db
 from typing import List
 from sqlalchemy.sql import func
 from sqlalchemy import desc
+import datetime
 
 class PostModel(db.Model):
 	__tablename__ = 'posts'
@@ -20,9 +21,23 @@ class PostModel(db.Model):
 		db.session.delete(self)
 		db.session.commit()
 
+	def json(self):
+		return {
+			'id': self.id,
+			'title': self.title,
+			'image_url': self.image_url,
+			'body': self.body,
+			'date_created': self.date_created.strftime("%Y-%m-%dT%H:%M:%S"),
+			'live': self.live
+		}
+
 	@classmethod
 	def find_all(cls) -> List['PostModel']:
 		return cls.query.order_by(desc(cls.date_created)).all()
+
+	@classmethod
+	def find_all_live(cls) -> List['PostModel']:
+		return cls.query.filter_by(live=True).order_by(desc(cls.date_created)).all()
 
 	@classmethod
 	def find_by_id(cls, _id: int) -> 'PostModel':
